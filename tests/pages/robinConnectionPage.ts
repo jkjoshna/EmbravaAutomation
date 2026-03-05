@@ -29,6 +29,8 @@ export class RobinConnectionPage {
         await this.robinCard.click();
         await this.robinIntegrationImg.click();
         await this.nextBtn.click();
+        // Click the 'Continue' button on the popup that appears
+        await this.continueBtn.click();
     }
 
     async fillCredentials(platformUrl: string, accountId: string, apiToken: string) {
