@@ -22,7 +22,8 @@ export class RobinConnectionPage {
         this.apiTokenInput = page.getByRole('textbox', { name: 'API Token' });
 
         this.testConnectionBtn = page.getByRole('button', { name: 'Test Connection' });
-        this.continueBtn = page.getByRole('button', { name: 'Continue' });
+        //this.continueBtn = page.getByRole('button', { name: 'Continue' });
+        this.continueBtn = page.locator('#nextBtn');
     }
 
     async selectRobinIntegration() {
@@ -45,5 +46,8 @@ export class RobinConnectionPage {
         // Wait for the button to become ready after API test
         await this.continueBtn.waitFor({ state: 'visible', timeout: 30000 });
         await this.continueBtn.click();
+        await page.getByRole('button', { name: 'Connections' }).click();
+        await page.getByRole('button', { name: 'Disconnect' }).click();
+
     }
 }

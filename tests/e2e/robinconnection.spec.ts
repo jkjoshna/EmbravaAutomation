@@ -36,4 +36,6 @@ test('user can successfully add a Robin integration connection', async ({ page, 
 
     // 6. Verification Assertion
     // TODO: Add strict assertion here based on UI response, e.g., expect(page.locator('.success-toast')).toBeVisible();
+    await page.getByRole('button', { name: 'Connections' }).click();
+    await page.getByRole('button', { name: 'Disconnect' }).click();
 });
