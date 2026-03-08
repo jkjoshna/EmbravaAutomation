@@ -34,8 +34,11 @@ test('user can successfully add a Robin integration connection', async ({ page, 
     // 5. Submit and test connection
     await robinPage.submitConnection();
 
-    // 6. Verification Assertion
-    // TODO: Add strict assertion here based on UI response, e.g., expect(page.locator('.success-toast')).toBeVisible();
+    //page.waitForTimeout(80000);
+    await page.locator('[data-automation="nextBTN"]').waitFor({ state: 'visible' });
+    await page.locator('[data-automation="nextBTN"]').click();
+    await page.screenshot();
+    await page.getByRole('button').nth(3).click();
     await page.getByRole('button', { name: 'Connections' }).click();
     await page.getByRole('button', { name: 'Disconnect' }).click();
 });

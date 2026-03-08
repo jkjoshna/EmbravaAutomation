@@ -44,10 +44,10 @@ export class RobinConnectionPage {
         await this.testConnectionBtn.click();
 
         // Wait for the button to become ready after API test
-        await this.continueBtn.waitFor({ state: 'visible', timeout: 30000 });
-        await this.continueBtn.click();
-        await page.getByRole('button', { name: 'Connections' }).click();
-        await page.getByRole('button', { name: 'Disconnect' }).click();
+        //await this.continueBtn.waitFor({ state: 'visible', timeout: 30000 });
+        //await this.continueBtn.click();
+        //await page.getByRole('button', { name: 'Connections' }).click();
+        //await page.getByRole('button', { name: 'Disconnect' }).click();
 
     }
 }
