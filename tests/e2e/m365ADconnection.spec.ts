@@ -18,11 +18,12 @@ test.afterEach(async () => {
     await context.close();
 });
 
-test('Verify the connection through M365 Std attributes', async ({ testLogin, testBaseurl }) => {
+test('Verify the connection through M365 Std attributes', async ({ testJoshLogin, testBaseurl }) => {
     test.setTimeout(70000);
-    const commonFunctions = new CommonFunctions(page, testLogin, testBaseurl);
-    await commonFunctions.login();
-
+    //const commonFunctions = new CommonFunctions(page, testLogin, testBaseurl);
+    //await commonFunctions.login();
+    const commonFunctions = new CommonFunctions(page, testJoshLogin, testBaseurl);
+    await commonFunctions.joshLogin(testJoshLogin);
     const m365Page = new M365ConnectionPage(page);
 
     await m365Page.selectM365Integration();
@@ -36,6 +37,6 @@ test('Verify the connection through M365 Std attributes', async ({ testLogin, te
     await m365Page.selectEnvironment('Active Directory');
     await m365Page.configureStandardAttributes();
     await m365Page.submitTestConnection();
-
+    await page.screenshot();
     await m365Page.disconnect();
 });

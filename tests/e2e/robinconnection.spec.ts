@@ -6,16 +6,16 @@ import { expect } from '@playwright/test';
 import { Homepage } from '../pages/homepage';
 import { RobinConnectionPage } from '../pages/robinConnectionPage';
 
-test('user can successfully add a Robin integration connection', async ({ page, testLogin, testBaseurl }) => {
+test('user can successfully add a Robin integration connection', async ({ page, testJoshLogin, testBaseurl }) => {
     // Set extended timeout for 3rd party API calls
     test.setTimeout(80000);
 
-    const commonFunctions = new CommonFunctions(page, testLogin, testBaseurl);
+    const commonFunctions = new CommonFunctions(page, testJoshLogin, testBaseurl);
     const home = new Homepage(page);
     const robinPage = new RobinConnectionPage(page);
 
     // 1. Initial Login Flow
-    await commonFunctions.login();
+    await commonFunctions.joshLogin(testJoshLogin);
 
     // 2. Navigate to Connections (using Homepage POM)
     await home.roommanageBtn.click();
@@ -38,7 +38,10 @@ test('user can successfully add a Robin integration connection', async ({ page, 
     await page.locator('[data-automation="nextBTN"]').waitFor({ state: 'visible' });
     await page.locator('[data-automation="nextBTN"]').click();
     await page.screenshot();
+
+    //await page.locator('[data-automation="submitBTN"]').click();
+
     await page.getByRole('button').nth(3).click();
     await page.getByRole('button', { name: 'Connections' }).click();
-    await page.getByRole('button', { name: 'Disconnect' }).click();
+    await page.getByRole('button', { name: 'Disconnect' }).nth(1).click();
 });

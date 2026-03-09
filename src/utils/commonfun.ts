@@ -31,4 +31,17 @@ export class CommonFunctions {
         await this.page.waitForLoadState('networkidle');
         await expect(this.page).toHaveTitle('Embrava Connect Portal', { timeout: 20000 });
     }
+
+    async joshLogin(testJoshLogin: LoginData): Promise<void> {
+        const login = new LoginPage(this.page);
+
+        await this.page.goto(this.baseUrlData.baseURL, { timeout: 60000 }); // 60 seconds
+        await this.page.waitForLoadState('domcontentloaded');
+        await login.emailInput.waitFor({ state: 'visible', timeout: 15000 });
+        await login.emailInput.fill(testJoshLogin.email);
+        await login.passwordInput.fill(testJoshLogin.password);
+        await login.signinBtn.click();
+        await this.page.waitForLoadState('networkidle');
+        await expect(this.page).toHaveTitle('Embrava Connect Portal', { timeout: 20000 });
+    }
 }

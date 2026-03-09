@@ -70,7 +70,8 @@ export class M365ConnectionPage {
 
         this.closeIconBtn = page.getByRole('button').nth(3);
         this.connectionsBtn = page.getByRole('button', { name: 'Connections' });
-        this.disconnectBtn = page.getByRole('button', { name: 'Disconnect' });
+        this.disconnectBtn = page.getByRole('button', { name: 'Disconnect' }).nth(1);
+
     }
 
     async selectM365Integration() {

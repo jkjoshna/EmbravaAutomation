@@ -18,12 +18,13 @@ test.beforeEach(async () => {
 test.afterEach(async () => {
     await context.close();
 });
-test('M365 Connection with embrava connect', async ({ testLogin, testBaseurl }) => {
+test('M365 Connection with embrava connect', async ({ testJoshLogin, testBaseurl }) => {
     test.setTimeout(60000); // ← extend test limit  
     const home = new Homepage(page);
     const deskconfig = new DeskconfigPage(page);
-    const commonFunctions = new CommonFunctions(page, testLogin, testBaseurl);
-    await commonFunctions.login();
+    const commonFunctions = new CommonFunctions(page, testJoshLogin, testBaseurl);
+    await commonFunctions.joshLogin(testJoshLogin);
+    //await commonFunctions.login();
 
     const m365Page = new M365ConnectionPage(page);
 
@@ -36,7 +37,14 @@ test('M365 Connection with embrava connect', async ({ testLogin, testBaseurl }) 
     );
 
     await m365Page.selectEnvironment('Embrava Connect');
-    await m365Page.submitConnection();
-    await m365Page.disconnect();
+    await m365Page.submitTestConnection();
+    //await m365Page.submitConnection();
+    // await m365Page.disconnect();
+    await page.screenshot();
+    await page.getByRole('button').nth(3).click();
+    await page.getByRole('button', { name: 'Connections' }).click();
+    await page.getByRole('button', { name: 'Disconnect' }).nth(1).click();
+
+    //await page.locator('[data-automation="BTNDisconnect"]').click();
 
 });

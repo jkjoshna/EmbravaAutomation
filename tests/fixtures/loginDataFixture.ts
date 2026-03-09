@@ -15,6 +15,11 @@ const loginData: LoginData = {
   password: "Admin@123"
 };
 
+const joshLoginData: LoginData = {
+  email: "joshdev@yopmail.com",
+  password: "Admin@123"
+};
+
 const baseurlData: BaseUrlData = {
   baseURL: "https://eccportaltest.azurewebsites.net/"
 };
@@ -22,10 +27,15 @@ const baseurlData: BaseUrlData = {
 // --- Extend Playwright test ---
 const test = base.extend<{
   testLogin: LoginData;
+  testJoshLogin: LoginData;
   testBaseurl: BaseUrlData;
 }>({
   testLogin: async ({ }, use) => {
     await use(loginData);
+  },
+
+  testJoshLogin: async ({ }, use) => {
+    await use(joshLoginData);
   },
 
   testBaseurl: async ({ }, use) => {
