@@ -1,12 +1,10 @@
-import test from '../fixtures/loginDataFixture';
-import { expect } from '@playwright/test';
-import { LoginPage } from '../pages/loginPage';
-import { Homepage } from '../pages/homepage';
-import { DeskconfigPage } from '../pages/deskconfigPage';
 import { BrowserContext, Page } from '@playwright/test';
+import test from '../fixtures/loginDataFixture';
 import { CommonFunctions } from '../../src/utils/commonfun';
 import { launchCleanContext } from '../../src/utils/browser';
+import { expect } from '@playwright/test';
 import { M365ConnectionPage } from '../pages/m365ConnectionPage';
+
 let context: BrowserContext;
 let page: Page;
 
@@ -18,10 +16,9 @@ test.beforeEach(async () => {
 test.afterEach(async () => {
     await context.close();
 });
-test('M365 Connection with embrava connect', async ({ testLogin, testBaseurl }) => {
-    test.setTimeout(60000); // ← extend test limit  
-    const home = new Homepage(page);
-    const deskconfig = new DeskconfigPage(page);
+
+test('M365 connection with custom attributes', async ({ testLogin, testBaseurl }) => {
+    test.setTimeout(70000);
     const commonFunctions = new CommonFunctions(page, testLogin, testBaseurl);
     await commonFunctions.login();
 
@@ -35,8 +32,16 @@ test('M365 Connection with embrava connect', async ({ testLogin, testBaseurl }) 
         'f~77UR02j9.klsdNCZFD8~Gv8s5~Ke1a21'
     );
 
-    await m365Page.selectEnvironment('Embrava Connect');
-    await m365Page.submitConnection();
+    await m365Page.selectEnvironment('Active Directory');
+
+    await m365Page.configureCustomAttributes(
+        'e26766316ab04d84b1966138de0ea545',
+        'extensionAttribute1',
+        'personalNumber'
+    );
+
+    await m365Page.submitTestConnection();
     await m365Page.disconnect();
 
 });
+

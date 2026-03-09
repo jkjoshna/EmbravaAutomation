@@ -24,11 +24,11 @@ const test = base.extend<{
   testLogin: LoginData;
   testBaseurl: BaseUrlData;
 }>({
-  testLogin: async ({}, use) => {
+  testLogin: async ({ }, use) => {
     await use(loginData);
   },
 
-  testBaseurl: async ({}, use) => {
+  testBaseurl: async ({ }, use) => {
     await use(baseurlData);
   }
 });
