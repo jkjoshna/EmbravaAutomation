@@ -17,23 +17,23 @@ test.afterEach(async () => {
   await context.close();
 });
 
-test('Verify the feedback cancel button functionality ', async ({ testLogin, testBaseurl }) => {
- test.setTimeout(60000); // ← extend test limit
+test('Verify the feedback close button functionality ', async ({ testLogin, testBaseurl }) => {
+  test.setTimeout(60000); // ← extend test limit
 
   const home = new Homepage(page);
   const login = new LoginPage(page);
   const message = page.locator('.Toastify');
-  const commonFunctions = new CommonFunctions(page,testLogin, testBaseurl);
-    await commonFunctions.login();
-  
-    // await page.waitForTimeout(3000);
-    await home.help.click();
-    // await page.waitForTimeout(2000);
-    
-    await home.givefeedback.click();
-    // await page.waitForTimeout(2000);
-    
-    await page.locator('[data-automation="closeBTN"]').click();
-    await expect(page).toHaveTitle('Embrava Connect Portal');
+  const commonFunctions = new CommonFunctions(page, testLogin, testBaseurl);
+  await commonFunctions.login();
+
+  // await page.waitForTimeout(3000);
+  await home.help.click();
+  // await page.waitForTimeout(2000);
+
+  await home.givefeedback.click();
+  // await page.waitForTimeout(2000);
+
+  await page.locator('[data-automation="closeBTN"]').click();
+  await expect(page).toHaveTitle('Embrava Connect Portal');
 
 });

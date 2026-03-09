@@ -17,33 +17,33 @@ test.afterEach(async () => {
   await context.close();
 });
 
-test('Validate the actions list displayed on the room booking device page ', async ({ testLogin, testBaseurl }) => {
- test.setTimeout(60000); // ← extend test limit
+test('Validate the apply configuration ', async ({ testLogin, testBaseurl }) => {
+  test.setTimeout(60000); // ← extend test limit
 
-    const login = new LoginPage(page);
-    const home = new Homepage(page);
-    const commonFunctions = new CommonFunctions(page,testLogin, testBaseurl);
-    await commonFunctions.login();
-    // await page.waitForTimeout(4000);
-   //await home.manageBtn.click();
-    await page.locator('[data-automation="roomBooking"] > [data-automation="BTNManage"]').click();
-    // await page.waitForTimeout(4000);
-    await page.waitForURL('https://eccportaltest.azurewebsites.net/room-booking');
-   
-    
-    // await page.waitForTimeout(4000);
-
-await page.getByRole('combobox', { name: 'Actions' }).click();
-
-// Select the first item
-await page.getByRole('option').first().click();
+  const login = new LoginPage(page);
+  const home = new Homepage(page);
+  const commonFunctions = new CommonFunctions(page, testLogin, testBaseurl);
+  await commonFunctions.login();
+  // await page.waitForTimeout(4000);
+  //await home.manageBtn.click();
+  await page.locator('[data-automation="roomBooking"] > [data-automation="BTNManage"]').click();
+  // await page.waitForTimeout(4000);
+  await page.waitForURL('https://eccportaltest.azurewebsites.net/room-booking');
 
 
-    //const actionsList = page.locator('[data-automation="actionsList"]');
-    //await page.getByText('Devices', { exact: true }).click();
-    //await page.getByRole('row', { name: 'Device ID Type Room Name Area' }).getByRole('checkbox').check();
-    //await page.getByRole('combobox').filter({ hasText: 'Actions' }).click();
-    //await page.getByRole('combobox').click();
-    //await page.getByRole('option').first().click();
+  // await page.waitForTimeout(4000);
+
+  await page.getByRole('combobox', { name: 'Actions' }).click();
+
+  // Select the first item
+  await page.getByRole('option').first().click();
+
+
+  //const actionsList = page.locator('[data-automation="actionsList"]');
+  //await page.getByText('Devices', { exact: true }).click();
+  //await page.getByRole('row', { name: 'Device ID Type Room Name Area' }).getByRole('checkbox').check();
+  //await page.getByRole('combobox').filter({ hasText: 'Actions' }).click();
+  //await page.getByRole('combobox').click();
+  //await page.getByRole('option').first().click();
 
 });

@@ -17,25 +17,25 @@ test.afterEach(async () => {
   await context.close();
 });
 
-test('Verify the help menu ', async ({ testLogin, testBaseurl }) => {
- test.setTimeout(60000); // ← extend test limit
+test('Verify the helparticles menu ', async ({ testLogin, testBaseurl }) => {
+  test.setTimeout(60000); // ← extend test limit
 
   const home = new Homepage(page);
   const login = new LoginPage(page);
-  const commonFunctions = new CommonFunctions(page,testLogin, testBaseurl);
-    await commonFunctions.login();
-  
-    // await page.waitForTimeout(3000);
-    await home.help.click();
-    // await page.waitForTimeout(2000);
-    await home.readhelparticle.click();
-    //await page.getByRole('button', { name: 'Read help articles' }).click();
-    const page1Promise = page.waitForEvent('popup');
+  const commonFunctions = new CommonFunctions(page, testLogin, testBaseurl);
+  await commonFunctions.login();
+
+  // await page.waitForTimeout(3000);
+  await home.help.click();
+  // await page.waitForTimeout(2000);
+  await home.readhelparticle.click();
+  //await page.getByRole('button', { name: 'Read help articles' }).click();
+  const page1Promise = page.waitForEvent('popup');
   await page.getByRole('button', { name: 'Continue' }).click();
   const page1 = await page1Promise;
-    // await page.waitForTimeout(5000);
-    
-    //await expect(page).toHaveTitle('Log In – Embrava Connect');
+  // await page.waitForTimeout(5000);
 
- 
+  //await expect(page).toHaveTitle('Log In – Embrava Connect');
+
+
 });

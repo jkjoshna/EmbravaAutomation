@@ -17,18 +17,18 @@ test.afterEach(async () => {
   await context.close();
 });
 
-test('Verify the room booking dashboard details ', async ({ testLogin, testBaseurl }) => {
- test.setTimeout(60000); // ← extend test limit
+test('Verify the room booking system log link ', async ({ testLogin, testBaseurl }) => {
+  test.setTimeout(60000); // ← extend test limit
 
-    const login = new LoginPage(page);
-    const home = new Homepage(page);
-    const commonFunctions = new CommonFunctions(page,testLogin, testBaseurl);
-    await commonFunctions.login();
-    // await page.waitForTimeout(4000);
-   //await home.manageBtn.click();
-    await page.locator('[data-automation="roomBooking"] > [data-automation="BTNManage"]').click();
-    // await page.waitForTimeout(4000);
-    await page.locator('[data-automation="systemLog"]').click();
-    // await page.waitForTimeout(4000);
-    await expect(page.locator('h1')).toHaveText('System Log');
+  const login = new LoginPage(page);
+  const home = new Homepage(page);
+  const commonFunctions = new CommonFunctions(page, testLogin, testBaseurl);
+  await commonFunctions.login();
+  // await page.waitForTimeout(4000);
+  //await home.manageBtn.click();
+  await page.locator('[data-automation="roomBooking"] > [data-automation="BTNManage"]').click();
+  // await page.waitForTimeout(4000);
+  await page.locator('[data-automation="systemLog"]').click();
+  // await page.waitForTimeout(4000);
+  await expect(page.locator('h1')).toHaveText('System Log');
 });

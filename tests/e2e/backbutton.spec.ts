@@ -19,17 +19,17 @@ test.afterEach(async () => {
   await context.close();
 });
 
-test('user logs out using fixture + POM', async ({ testLogin, testBaseurl }) => {
- test.setTimeout(60000); // ← extend test limit
+test('Back button functionality', async ({ testLogin, testBaseurl }) => {
+  test.setTimeout(60000); // ← extend test limit
   const home = new Homepage(page);
-  const commonFunctions = new CommonFunctions(page,testLogin, testBaseurl);
-    await commonFunctions.login();
-    await page.goto(testBaseurl.baseURL, { timeout: 60000 }); // 60 seconds 
-    // await page.waitForTimeout(3000);
-    // await page.waitForTimeout(3000);
-    await home.profileMenu.click();
-    // await page.waitForTimeout(6000);
-    await home.logoutBtn.click();
-    await page.goBack();
-    await expect(page).toHaveTitle('Log In – Embrava Connect');
+  const commonFunctions = new CommonFunctions(page, testLogin, testBaseurl);
+  await commonFunctions.login();
+  await page.goto(testBaseurl.baseURL, { timeout: 60000 }); // 60 seconds 
+  // await page.waitForTimeout(3000);
+  // await page.waitForTimeout(3000);
+  await home.profileMenu.click();
+  // await page.waitForTimeout(6000);
+  await home.logoutBtn.click();
+  await page.goBack();
+  await expect(page).toHaveTitle('Log In – Embrava Connect');
 });

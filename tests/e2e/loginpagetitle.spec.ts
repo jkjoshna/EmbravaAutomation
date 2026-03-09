@@ -15,13 +15,13 @@ test.beforeEach(async () => {
 test.afterEach(async () => {
   await context.close();
 });
-test('verify the login page title', async ({ testLogin, testBaseurl }) => {
- test.setTimeout(60000); // ← extend test limit
+test('Verify the login page title', async ({ testLogin, testBaseurl }) => {
+  test.setTimeout(60000); // ← extend test limit
 
-   const commonFunctions = new CommonFunctions(page,testLogin, testBaseurl);
+  const commonFunctions = new CommonFunctions(page, testLogin, testBaseurl);
   await page.goto(testBaseurl.baseURL, { timeout: 60000 }); // 60 seconds 
   // await page.waitForTimeout(3000);
   await commonFunctions.login();
   await expect(page).toHaveTitle('Embrava Connect Portal');
- 
+
 });

@@ -18,18 +18,18 @@ test.afterEach(async () => {
   await context.close();
 });
 
-test('Verify the account menu', async ({ testLogin, testBaseurl }) => {
- test.setTimeout(60000); // ← extend test limit
+test('Verify the billing menu', async ({ testLogin, testBaseurl }) => {
+  test.setTimeout(60000); // ← extend test limit
 
   const login = new LoginPage(page);
   const home = new Homepage(page);
-  const commonFunctions = new CommonFunctions(page,testLogin, testBaseurl);
-    await commonFunctions.login();
-    await page.goto(testBaseurl.baseURL, { timeout: 60000 }); // 60 seconds 
-    // await page.waitForTimeout(3000);
-    await home.settingsMenu.click();
-    // await page.waitForTimeout(6000);
-    await home.billingMenu.click();
-    await expect(page.locator('h2')).toHaveText('Usage Summary'); 
- 
+  const commonFunctions = new CommonFunctions(page, testLogin, testBaseurl);
+  await commonFunctions.login();
+  await page.goto(testBaseurl.baseURL, { timeout: 60000 }); // 60 seconds 
+  // await page.waitForTimeout(3000);
+  await home.settingsMenu.click();
+  // await page.waitForTimeout(6000);
+  await home.billingMenu.click();
+  await expect(page.locator('h2')).toHaveText('Usage Summary');
+
 });
