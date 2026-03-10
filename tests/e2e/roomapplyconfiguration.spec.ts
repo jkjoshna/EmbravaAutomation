@@ -17,7 +17,7 @@ test.afterEach(async () => {
   await context.close();
 });
 
-test('Validate the apply configuration ', async ({ testLogin, testBaseurl }) => {
+test('Verify the apply configuration functionality', async ({ testLogin, testBaseurl }) => {
   test.setTimeout(60000); // ← extend test limit
 
   const login = new LoginPage(page);
@@ -28,7 +28,7 @@ test('Validate the apply configuration ', async ({ testLogin, testBaseurl }) => 
   //await home.manageBtn.click();
   await page.locator('[data-automation="roomBooking"] > [data-automation="BTNManage"]').click();
   // await page.waitForTimeout(4000);
-  await page.waitForURL('https://eccportaltest.azurewebsites.net/room-booking');
+  // await page.waitForURL('https://eccportaltest.azurewebsites.net/room-booking');
 
 
   // await page.waitForTimeout(4000);

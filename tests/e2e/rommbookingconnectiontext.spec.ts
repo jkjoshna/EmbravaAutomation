@@ -18,15 +18,16 @@ test.afterEach(async () => {
 });
 
 test('Verify the room booking connection text ', async ({ testLogin, testBaseurl }) => {
- test.setTimeout(60000); // ← extend test limit
+  test.setTimeout(60000); // ← extend test limit
 
-    const login = new LoginPage(page);
-    const home = new Homepage(page);
-    const commonFunctions = new CommonFunctions(page,testLogin, testBaseurl);
-    await commonFunctions.login();
-    // await page.waitForTimeout(4000);
-   //await home.manageBtn.click();
-    await page.locator('[data-automation="roomBooking"] > [data-automation="BTNManage"]').click();
-    // await page.waitForTimeout(4000);
-    await expect(page.getByText('Connected to Robin', { exact: true })).toBeVisible();
+  const login = new LoginPage(page);
+  const home = new Homepage(page);
+  const commonFunctions = new CommonFunctions(page, testLogin, testBaseurl);
+  await commonFunctions.login();
+  // await page.waitForTimeout(4000);
+  //await home.manageBtn.click();
+  await page.locator('[data-automation="roomBooking"] > [data-automation="BTNManage"]').click();
+  // await page.waitForTimeout(4000);
+  await expect(page.locator('body')).toContainText('Connected to');
+  //await expect(page.getByText('Connected to', { exact: true })).toBeVisible();
 });

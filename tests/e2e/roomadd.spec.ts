@@ -19,33 +19,35 @@ test.afterEach(async () => {
 });
 
 test('Verify the roomdevice add and remove functionality ', async ({ testLogin, testBaseurl }) => {
- test.setTimeout(60000); // ← extend test limit
+  test.setTimeout(60000); // ← extend test limit
 
-    const login = new LoginPage(page);
-    const home = new Homepage(page);
-    const commonFunctions = new CommonFunctions(page,testLogin, testBaseurl);
-    const devices = new Devicespage(page);
-    await commonFunctions.login();
-    // await page.waitForTimeout(4000);
-    await home.roommanageBtn.click();
-    //await page.locator('[data-automation="roomBooking"] > [data-automation="BTNManage"]').click();
-    // await page.waitForTimeout(4000);
+  const login = new LoginPage(page);
+  const home = new Homepage(page);
+  const commonFunctions = new CommonFunctions(page, testLogin, testBaseurl);
+  const devices = new Devicespage(page);
+  await commonFunctions.login();
+  // await page.waitForTimeout(4000);
+  await home.roommanageBtn.click();
 
-   
-    await devices.deviceslist.click();
-    await devices.adddeviceBtn.click();
-    // await page.waitForTimeout(2000);
-    await devices.deviceid.fill('433267888678');
-    await devices.building.selectOption('TestBuilding2');
-    await devices.space.selectOption('Desks Space');
-    await devices.addroomBtn.click();
-    // await page.waitForTimeout(4000);
-    const deviceAdded = page.locator('text=RB-001').isVisible();
-    expect(deviceAdded).toBeTruthy();
-    await page.getByRole('row', { name: '433267888678 433267888678 Desks' }).getByRole('checkbox').check();
+  await page.getByRole('button').nth(3).click();
+  await page.getByRole('button', { name: 'Connections' }).click();
+  await page.getByRole('button', { name: 'Disconnect' }).nth(1).click();
+
+
+  await devices.deviceslist.click();
+  await devices.adddeviceBtn.click();
+  // await page.waitForTimeout(2000);
+  await devices.deviceid.fill('433267888678');
+  await devices.building.selectOption('TestBuilding2');
+  await devices.space.selectOption('Desks Space');
+  await devices.addroomBtn.click();
+  // await page.waitForTimeout(4000);
+  const deviceAdded = page.locator('text=RB-001').isVisible();
+  expect(deviceAdded).toBeTruthy();
+  await page.getByRole('row', { name: '433267888678 433267888678 Desks' }).getByRole('checkbox').check();
   await page.getByRole('combobox').filter({ hasText: 'Actions' }).click();
   await page.getByRole('option', { name: 'Remove' }).click();
   await page.getByRole('button', { name: 'Remove' }).click();
   await page.getByText('Device deleted successfully.').click();
-    
+
 });

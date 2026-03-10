@@ -6,14 +6,14 @@ export default defineConfig({
     ['allure-playwright'],
     ['html']
   ],
-    /* Retry failed tests */
+  /* Retry failed tests */
   retries: 1,
   testDir: './tests/e2e',
-    /* Timeout for each test */
+  /* Timeout for each test */
   timeout: 60000,
 
   use: {
-  
+
 
     screenshot: "on",
     headless: true,

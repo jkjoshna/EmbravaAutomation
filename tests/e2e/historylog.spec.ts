@@ -35,6 +35,6 @@ test('Verify the deskbooking history log', async ({ testLogin, testBaseurl }) =>
   //await expect(page).toHaveTitle('Embrava Connect Portal');
 
 
-  await page.waitForURL('https://ecc-portal-ui01.azurewebsites.net/desk-booking');
-  //await expect(page.locator('h1')).toHaveText('Dashboard');
+
+  await expect(page.locator('h1')).toHaveText('Dashboard');
 });

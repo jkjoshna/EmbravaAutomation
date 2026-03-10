@@ -18,30 +18,31 @@ test.afterEach(async () => {
 });
 
 test('Verify the feedback text area and button functionality ', async ({ testLogin, testBaseurl }) => {
- test.setTimeout(60000); // ← extend test limit
+  test.setTimeout(60000); // ← extend test limit
 
   const home = new Homepage(page);
   const login = new LoginPage(page);
-  //const message = page.locator('.Toastify');
+  const message = page.locator('.Toastify');
   const toast = page.locator('.Toastify__toast');
 
-  const commonFunctions = new CommonFunctions(page,testLogin, testBaseurl);
-    await commonFunctions.login();
-  
-    // await page.waitForTimeout(3000);
-    await home.help.click();
-    // await page.waitForTimeout(2000);
-    
-    await home.givefeedback.click();
-    // await page.waitForTimeout(2000);
-    await page.getByRole('combobox').selectOption('Works well');
-    await page.type('#feedBackNote', 'Sample feedback for Works well');
-    // await page.waitForTimeout(2000);
-    await page.locator('[data-automation="submitBTN"]').first().click();
-    // await page.waitForTimeout(4000);
-    await expect(toast).toBeVisible();
-   
-    //await expect(message).toHaveText('Feedback updated successfully.');
-    //await expect(page.locator('[data-automation="submitBTN"]').first()).toHaveText('Send feedback');
- 
+  const commonFunctions = new CommonFunctions(page, testLogin, testBaseurl);
+  await commonFunctions.login();
+
+  // await page.waitForTimeout(3000);
+  await home.help.click();
+  // await page.waitForTimeout(2000);
+
+  await home.givefeedback.click();
+  // await page.waitForTimeout(2000);
+  await page.getByRole('combobox').selectOption('Works well');
+  await page.type('#feedBackNote', 'Sample feedback for Works well automation');
+  // await page.waitForTimeout(2000);
+  await page.getByText('Send feedback').click();
+  //await page.locator('[data-automation="submitBTN"]').first().click();
+  await page.waitForTimeout(10000);
+  await expect(toast).toBeVisible();
+
+  //await expect(message).toHaveText('Feedback updated successfully.');
+  //await expect(page.locator('[data-automation="submitBTN"]').first()).toHaveText('Send feedback');
+
 });

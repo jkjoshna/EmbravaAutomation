@@ -19,18 +19,18 @@ test.afterEach(async () => {
 
 
 test('Verify the organization name', async ({ page, testLogin, testBaseurl }) => {
- test.setTimeout(60000); // ← extend test limit
+  test.setTimeout(60000); // ← extend test limit
 
   const login = new LoginPage(page);
   const home = new Homepage(page);
-  const commonFunctions = new CommonFunctions(page,testLogin, testBaseurl);
+  const commonFunctions = new CommonFunctions(page, testLogin, testBaseurl);
 
-    await commonFunctions.login();
-    // await page.waitForTimeout(3000);
-    await home.profileMenu.click();
-    // await page.waitForTimeout(6000);
-    await home.switchorganizationBtn.click();
-    await expect(page.getByRole('cell', { name: 'ECC Project' })).toHaveText('ECC Project');
-    
- 
+  await commonFunctions.login();
+  // await page.waitForTimeout(3000);
+  await home.profileMenu.click();
+  // await page.waitForTimeout(6000);
+  await home.switchorganizationBtn.click();
+  await expect(page.getByRole('cell', { name: 'Development' })).toHaveText('Development');
+
+
 });
