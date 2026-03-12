@@ -37,7 +37,6 @@ test('Verify the add and remove functionality for desk devices', async ({ testLo
   await devices.deviceid.fill('5666435436');
   await devices.building.selectOption('TestBuilding2');
   await devices.space.selectOption('Desks Space');
-  //await devices.desk.selectOption('Pod 1 - Desk1C');
   await page.locator('select[name="desk"]').selectOption('Pod 3 - Desk 4444');
   await devices.adddeskBtn.click();
   // await page.waitForTimeout(4000);

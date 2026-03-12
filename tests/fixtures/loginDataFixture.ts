@@ -11,7 +11,7 @@ export interface BaseUrlData {
 
 // --- Fixture values ---
 const loginData: LoginData = {
-  email: "addev@yopmail.com",
+  email: "eccauto@yopmail.com",
   password: "Admin@123"
 };
 

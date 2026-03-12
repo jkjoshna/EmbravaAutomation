@@ -25,11 +25,12 @@ test('Verify the systemlog link', async ({ testLogin, testBaseurl }) => {
 
 
   // await page.waitForTimeout(4000);
-  await home.deskmanageBtn.click();
-  //await page.locator('[data-automation="DeskBooking"] > [data-automation="BTNManage"]').click();
-  // await page.waitForTimeout(4000);
-  await page.locator('[data-automation="systemLog"]').click();
-  // await page.waitForTimeout(4000);
+  //await home.deskmanageBtn.click();
+  await page.locator('[data-automation="DeskBooking"] > [data-automation="BTNManage"]').click();
+  await page.waitForTimeout(4000);
+  await page.locator('[data-automation="system-log"]').click();
+  //await page.locator('[data-automation="systemLog"]').click();
+  await page.waitForTimeout(4000);
   await expect(page.locator('h1')).toHaveText('System Log');
 
 });
