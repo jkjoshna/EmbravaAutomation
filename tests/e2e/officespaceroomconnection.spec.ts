@@ -15,15 +15,14 @@ test.beforeEach(async () => {
 test.afterEach(async () => {
     await context.close();
 });
-test('Officespace desk booking connection', async ({ testJoshLogin, testBaseurl }) => {
+test('Officespace roombooking connection', async ({ testJoshLogin, testBaseurl }) => {
     test.setTimeout(60000); // ← extend test limit  
     const commonFunctions = new CommonFunctions(page, testJoshLogin, testBaseurl);
     await commonFunctions.joshLogin(testJoshLogin);
 
-    const officespaceConnection = new OfficespaceConnectionPage(page);
-    await officespaceConnection.selectOfficeSpaceIntegration();
-    await officespaceConnection.fillApiSecretKey('YLH618PJ2RCjBZbci4xto0eUfwCaWDTC9fM6xc42eNwZwmEy');
-    await officespaceConnection.testAndCompleteConnection();
-    await officespaceConnection.disconnectIntegration();
-
+    const officespacePage = new OfficespaceConnectionPage(page);
+    await officespacePage.selectOfficeSpaceRoomIntegration();
+    await officespacePage.fillApiSecretKey('YLH618PJ2RCjBZbci4xto0eUfwCaWDTC9fM6xc42eNwZwmEy');
+    await officespacePage.testAndCompleteConnection();
+    await officespacePage.disconnectIntegration();
 });

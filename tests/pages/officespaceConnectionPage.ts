@@ -10,6 +10,8 @@ export class OfficespaceConnectionPage {
     readonly closeBtn: Locator;
     readonly connectionsMenuBtn: Locator;
     readonly disconnectBtn: Locator;
+    readonly roomManageConnectionBtn: Locator;
+    readonly roomOfficeSpaceIntegrationDiv: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -21,11 +23,20 @@ export class OfficespaceConnectionPage {
         this.closeBtn = page.getByRole('button').nth(3);
         this.connectionsMenuBtn = page.getByRole('button', { name: 'Connections' });
         this.disconnectBtn = page.getByRole('button', { name: 'Disconnect' });
+        this.roomManageConnectionBtn = page.getByRole('button', { name: 'Manage' }).nth(1);
+        this.roomOfficeSpaceIntegrationDiv = page.locator('div').filter({ hasText: 'OfficeSpace' }).nth(4);
     }
 
     async selectOfficeSpaceIntegration() {
         await this.manageConnectionBtn.click();
         await this.officeSpaceIntegrationImg.click();
+        await this.continueBtn.click();
+        await this.continueBtn.click();
+    }
+
+    async selectOfficeSpaceRoomIntegration() {
+        await this.roomManageConnectionBtn.click();
+        await this.roomOfficeSpaceIntegrationDiv.click();
         await this.continueBtn.click();
         await this.continueBtn.click();
     }
