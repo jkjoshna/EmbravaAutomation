@@ -18,7 +18,7 @@ test.afterEach(async () => {
   await context.close();
 });
 
-test('Verify the add functionality in deskbooking', async ({ testLogin, testBaseurl }) => {
+test('Verify the add and remove functionality for Desk devices.', async ({ testLogin, testBaseurl }) => {
   test.setTimeout(60000); // ← extend test limit  
   const home = new Homepage(page);
   const devices = new Devicespage(page);
@@ -41,15 +41,18 @@ test('Verify the add functionality in deskbooking', async ({ testLogin, testBase
   await page.getByRole('textbox', { name: 'e.g.,' }).fill('5666435433');
   await page.locator('select[name="building"]').selectOption('17693');
   await page.locator('select[name="space"]').selectOption('133436');
+  //await expect(page.locator('select[name="desk"]')).toBeEnabled();
+  await page.waitForTimeout(4000);
   await page.locator('select[name="desk"]').selectOption('652312');
   await page.getByRole('button', { name: 'Add desk' }).click();
 
   // Assert that the "Device is not licensed" error is visible
   //await expect(page.getByText('Device is not licensed')).toBeVisible({ timeout: 10000 });
   //await page.getByRole('textbox', { name: 'e.g.,' }).click();
+  await page.waitForTimeout(4000);
 
-
-  await page.getByRole('row', { name: '5666435433 5666435433 Desk2' }).getByRole('checkbox').check();
+  // Use filter with hasText to find the row more reliably, avoiding exact text matching issues
+  await page.getByRole('row').filter({ hasText: '5666435433' }).getByRole('checkbox').check();
 
   await page.getByRole('combobox').filter({ hasText: 'Actions' }).click();
   await page.getByText('Remove').click();

@@ -18,7 +18,7 @@ test.afterEach(async () => {
     await context.close();
 });
 
-test('Verify the add functionality in deskbooking', async ({ testLogin, testBaseurl }) => {
+test('Validate the add and remove functionality for Room devices.', async ({ testLogin, testBaseurl }) => {
     test.setTimeout(60000); // ← extend test limit  
     const home = new Homepage(page);
     const devices = new Devicespage(page);

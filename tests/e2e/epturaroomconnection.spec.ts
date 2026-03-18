@@ -22,7 +22,7 @@ test('Verify the Epturadesk connection', async ({ testJoshLogin, testBaseurl }) 
     const commonFunctions = new CommonFunctions(page, testJoshLogin, testBaseurl);
     await commonFunctions.joshLogin(testJoshLogin);
     await expect(page).toHaveTitle('Embrava Connect Portal');
-    await page.locator('[data-automation="RoomBooking"] > [data-automation="BTNManage"]').click();
+    await page.locator('[data-automation="roomBooking"] > [data-automation="BTNManage"]').click();
     await page.locator('div').filter({ hasText: 'Eptura Engage' }).nth(4).click();
     await page.locator('.data-\\[state\\=open\\]\\:animate-in').first().click();
     await page.getByRole('button', { name: 'Continue' }).click();

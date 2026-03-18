@@ -16,7 +16,7 @@ const loginData: LoginData = {
 };
 
 const joshLoginData: LoginData = {
-  email: "joshdev@yopmail.com",
+  email: "automation@yopmail.com",
   password: "Admin@123"
 };
 
