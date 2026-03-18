@@ -25,7 +25,6 @@ export class M365ConnectionPage {
     readonly badgeNumberFieldInput: Locator;
     readonly employeeIdFieldInput: Locator;
 
-    readonly previousContinueBtn: Locator;
     readonly dataStateOpenLocator: Locator;
     readonly closeIconBtn: Locator;
     readonly connectionsBtn: Locator;
@@ -39,8 +38,8 @@ export class M365ConnectionPage {
         // We can use the image role or the div text filter to locate Microsoft 365
         this.m365IntegrationImg = page.locator('div').filter({ hasText: 'Microsoft' }).nth(4);
 
-        // Using the robust data-automation element provided by the user
-        this.continueBtn = page.locator('[data-automation="nextBTN"]');
+        // Using getByRole instead of nextBTN automation id as it is more robust
+        this.continueBtn = page.getByRole('button', { name: 'Continue' });
 
         this.dataStateOpenLocator = page.locator('.data-\\[state\\=open\\]\\:animate-in').first();
 
@@ -66,11 +65,10 @@ export class M365ConnectionPage {
         this.badgeNumberFieldInput = page.getByRole('textbox', { name: 'Badge number field' });
         this.employeeIdFieldInput = page.getByRole('textbox', { name: 'Employee Id field' });
 
-        this.previousContinueBtn = page.getByText('PreviousContinue');
-
+        // Removed previousContinueBtn as it clicks the continue button too early
         this.closeIconBtn = page.getByRole('button').nth(3);
         this.connectionsBtn = page.getByRole('button', { name: 'Connections' });
-        this.disconnectBtn = page.getByRole('button', { name: 'Disconnect' }).nth(1);
+        this.disconnectBtn = page.getByRole('button', { name: 'Disconnect' });
 
     }
 
@@ -130,7 +128,6 @@ export class M365ConnectionPage {
 
     async submitTestConnection() {
         await this.testConnectionBtn.click();
-        await this.previousContinueBtn.click();
         await this.continueBtn.click();
     }
 

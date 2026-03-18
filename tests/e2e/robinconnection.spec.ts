@@ -43,5 +43,5 @@ test('user can successfully add a Robin integration connection', async ({ page, 
 
     await page.getByRole('button').nth(3).click();
     await page.getByRole('button', { name: 'Connections' }).click();
-    await page.getByRole('button', { name: 'Disconnect' }).nth(1).click();
+    await page.getByRole('button', { name: 'Disconnect' }).click();
 });

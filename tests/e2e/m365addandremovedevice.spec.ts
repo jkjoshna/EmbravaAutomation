@@ -18,10 +18,13 @@ test.beforeEach(async () => {
 test.afterEach(async () => {
     await context.close();
 });
-test('M365 Connection with embrava connect', async ({ testJoshLogin, testBaseurl }) => {
+import { Devicespage } from '../pages/devicesPage';
+
+test('M365 add and remove devices ', async ({ testJoshLogin, testBaseurl }) => {
     test.setTimeout(60000); // ← extend test limit  
     const home = new Homepage(page);
     const deskconfig = new DeskconfigPage(page);
+    const devices = new Devicespage(page);
     const commonFunctions = new CommonFunctions(page, testJoshLogin, testBaseurl);
     await commonFunctions.joshLogin(testJoshLogin);
     //await commonFunctions.login();
@@ -41,7 +44,21 @@ test('M365 Connection with embrava connect', async ({ testJoshLogin, testBaseurl
     //await m365Page.submitConnection();
     // await m365Page.disconnect();
     await page.screenshot();
-    await page.getByRole('button').nth(3).click();
+    await devices.deviceslist.click(); // Resolves strict mode error on getByText('Devices')
+    await devices.adddeviceBtn.click();
+    await devices.deviceid.click();
+    await devices.deviceid.fill('525252200886');
+    await devices.roomMailboxInput.click();
+    await devices.roomMailboxInput.fill('deska3@embrava.com');
+    await devices.addroomBtn.click();
+    await page.waitForTimeout(5000);
+
+    await devices.getDeviceCheckbox('525252200886').check();
+    await devices.actionsCombobox.click();
+    await devices.removeAction.click();
+    await devices.removeConfirmBtn.click();
+    await devices.closeDeletedModalBtn.click();
+    await page.waitForTimeout(5000);
     await page.getByRole('button', { name: 'Connections' }).click();
     await page.getByRole('button', { name: 'Disconnect' }).click();
 

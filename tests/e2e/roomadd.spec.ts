@@ -31,7 +31,7 @@ test('Verify the roomdevice add and remove functionality ', async ({ testLogin, 
 
   await page.getByRole('button').nth(3).click();
   await page.getByRole('button', { name: 'Connections' }).click();
-  await page.getByRole('button', { name: 'Disconnect' }).nth(1).click();
+  await page.getByRole('button', { name: 'Disconnect' }).click();
 
 
   await devices.deviceslist.click();

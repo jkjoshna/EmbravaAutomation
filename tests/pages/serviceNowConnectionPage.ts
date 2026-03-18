@@ -14,8 +14,7 @@ export class ServiceNowConnectionPage {
         this.page = page;
         this.manageConnectionBtn = page.locator('[data-automation="roomBooking"] > [data-automation="BTNManage"]');
         this.serviceNowIntegrationImg = page.getByRole('img', { name: 'https://eccstgacctest.z13.web.core.windows.net/connection-app-logos/service-now' });
-        // this.continueBtn = page.getByRole('button', { name: 'Continue' });
-        this.continueBtn = page.locator('[data-automation="nextBTN"]');
+        this.continueBtn = page.getByRole('button', { name: 'Continue' });
         this.serviceUrlInput = page.getByRole('textbox', { name: 'Service URL' });
         this.userNameInput = page.getByRole('textbox', { name: 'User Name' });
         this.passwordInput = page.getByRole('textbox', { name: 'Password' });

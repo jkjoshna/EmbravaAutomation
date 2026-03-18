@@ -26,6 +26,6 @@ test('Verify the Servicenow Connection process', async ({ testJoshLogin, testBas
     await serviceNowPage.submitConnection();
     await page.getByRole('button').nth(3).click();
     await page.getByRole('button', { name: 'Connections' }).click();
-    await page.getByRole('button', { name: 'Disconnect' }).nth(1).click();
+    await page.getByRole('button', { name: 'Disconnect' }).click();
     //await page.getByRole('button', { name: 'Disconnect' }).click();
 });
