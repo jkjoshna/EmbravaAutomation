@@ -17,7 +17,7 @@ test.afterEach(async () => {
     await context.close();
 });
 
-test('Verify the Eptura room connection', async ({ testJoshLogin, testBaseurl }) => {
+test('Verify the Eptura add user functionality', async ({ testJoshLogin, testBaseurl }) => {
     test.setTimeout(70000);
     const commonFunctions = new CommonFunctions(page, testJoshLogin, testBaseurl);
     await commonFunctions.joshLogin(testJoshLogin);
@@ -35,6 +35,17 @@ test('Verify the Eptura room connection', async ({ testJoshLogin, testBaseurl })
     );
 
     await epturaPage.submitTestConnection();
+    await page.getByText('User List').click();
+    await page.getByRole('button', { name: 'Add User' }).click();
+    await page.getByRole('textbox', { name: 'External Id' }).click();
+    await page.getByRole('textbox', { name: 'External Id' }).fill('sjose@embrava.com');
+    await page.getByRole('textbox', { name: 'External Id' }).press('Enter');
+    await page.locator('div').filter({ hasText: /^Employee ID$/ }).click();
+    await page.getByRole('textbox', { name: 'Employee ID' }).click();
+    await page.getByRole('textbox', { name: 'Employee ID' }).fill('333');
+    await page.getByRole('textbox', { name: 'Badge Number' }).click();
+    await page.getByRole('textbox', { name: 'Badge Number' }).fill('44444');
+    await page.getByRole('button', { name: 'Save' }).click();
 
     await epturaPage.disconnect();
 });

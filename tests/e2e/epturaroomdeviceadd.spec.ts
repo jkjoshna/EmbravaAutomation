@@ -36,5 +36,22 @@ test('Verify the Eptura room connection', async ({ testJoshLogin, testBaseurl })
 
     await epturaPage.submitTestConnection();
 
+    await page.getByText('Devices', { exact: true }).click();
+    await page.getByRole('button', { name: 'Add Device' }).click();
+    await page.getByRole('textbox', { name: 'e.g.,' }).click();
+    await page.getByRole('textbox', { name: 'e.g.,' }).fill('52526100069');
+    await page.locator('select[name="building"]').selectOption('4');
+    await page.locator('select[name="space"]').selectOption('5');
+    await page.locator('select[name="desk"]').selectOption('7');
+    await page.locator('.css-19bb58m').click();
+    await page.locator('.css-19bb58m').click();
+    await page.locator('.css-19bb58m').click();
+    await page.getByRole('option', { name: 'Fitzgerald Room / Floor -' }).click();
+    await page.getByRole('button', { name: 'Add room' }).click();
+
+    await page.getByRole('row', { name: '52526100069 52526100069' }).getByRole('checkbox').check();
+    await page.getByRole('combobox').filter({ hasText: 'Actions' }).click();
+    await page.getByRole('option', { name: 'Remove' }).click();
+    await page.getByRole('button', { name: 'Remove' }).click();
     await epturaPage.disconnect();
 });
