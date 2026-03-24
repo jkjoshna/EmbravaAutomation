@@ -29,8 +29,7 @@ test('Verify the desk configuration delete button', async ({ testLogin, testBase
   await page.locator('[data-automation="DeskBooking"] > [data-automation="BTNManage"]').click();
   // await page.waitForTimeout(4000);
   await deskconfig.deskconfiguration.click();
-
-
+  await page.waitForTimeout(4000);
   await deskconfig.deleteconfigBtn.click();
   await page.locator('[data-automation="deleteBTN"]').click();
   // await page.waitForTimeout(4000);

@@ -15,7 +15,7 @@ export class DeskconfigPage {
    this.addconfigBtn = page.getByRole('button', { name: 'Add Configuration' });
     //this.editconfigBtn = page.locator('[data-automation="BTNeditConfig"]');
     this.editconfigBtn = page.locator('tr').nth(1).locator('[data-automation="BTNeditConfig"]');
-    this.deleteconfigBtn = page.locator('tr').nth(1).locator('[data-automation="BTNdeleteConfig"]');
+    this.deleteconfigBtn = page.locator('[data-automation="BTNdeleteConfig"]:not(:disabled)').first();
    
   } 
 }

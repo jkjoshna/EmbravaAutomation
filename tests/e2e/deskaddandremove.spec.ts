@@ -38,7 +38,7 @@ test('Verify the add and remove functionality for Desk devices.', async ({ testL
 
 
   await page.getByRole('textbox', { name: 'e.g.,' }).click();
-  await page.getByRole('textbox', { name: 'e.g.,' }).fill('5666435433');
+  await page.getByRole('textbox', { name: 'e.g.,' }).fill('42426359888');
   await page.locator('select[name="building"]').selectOption('17693');
   await page.locator('select[name="space"]').selectOption('133436');
   //await expect(page.locator('select[name="desk"]')).toBeEnabled();
@@ -52,7 +52,7 @@ test('Verify the add and remove functionality for Desk devices.', async ({ testL
   await page.waitForTimeout(4000);
 
   // Use filter with hasText to find the row more reliably, avoiding exact text matching issues
-  await page.getByRole('row').filter({ hasText: '5666435433' }).getByRole('checkbox').check();
+  await page.getByRole('row').filter({ hasText: '42426359888' }).getByRole('checkbox').check();
 
   await page.getByRole('combobox').filter({ hasText: 'Actions' }).click();
   await page.getByText('Remove').click();

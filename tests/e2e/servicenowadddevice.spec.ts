@@ -31,7 +31,8 @@ test('Verify the Servicenow Connection process', async ({ testJoshLogin, testBas
     await page.getByRole('textbox', { name: 'e.g.,' }).click();
     await page.getByRole('textbox', { name: 'e.g.,' }).fill('5252600021');
     await page.getByRole('button', { name: 'Add room' }).click();
+    await page.getByRole('button').nth(3).click();
 
+    await page.getByRole('button', { name: 'Connections' }).click();
     await page.getByRole('button', { name: 'Disconnect' }).click();
-    //await page.getByRole('button', { name: 'Disconnect' }).click();
 });
