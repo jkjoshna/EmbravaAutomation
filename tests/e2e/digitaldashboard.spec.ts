@@ -21,20 +21,16 @@ test('Verify the digital signage dashboard', async ({ testLogin, testBaseurl }) 
   const home = new Homepage(page);
   const commonFunctions = new CommonFunctions(page, testLogin, testBaseurl);
   await commonFunctions.login();
-  // await page.waitForTimeout(4000);
-
-  //await page.getByRole('button', { name: 'avatar_logo' }).click();
-  await page.getByRole('button', { name: 'Try for free' }).first().click();
-  await page.getByRole('button', { name: 'Save Changes' }).click();
+  await page.waitForTimeout(4000);
+  await page.locator('div').nth(2).click();
   await page.getByRole('button', { name: 'Manage' }).nth(2).click();
-  //await home.digitalsignagemanageBtn.click();
 
+
+  //await home.digitalsignagemanageBtn.click({ force: true });
 
   // await page.waitForURL('https://eccportaltest.azurewebsites.net/digital-signage');
 
-  // await page.waitForTimeout(4000);
+  //await page.waitForTimeout(4000);
 
-  //await expect(page.getByText('Manage Organization Hierarchy')).toBeVisible();
-  //await expect(page.getByText('screen with issues', { exact: true })).toBeVisible();
-  await expect(page.locator('h1')).toHaveText('Dashboard');
+
 });

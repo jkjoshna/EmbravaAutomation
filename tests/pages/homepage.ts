@@ -42,7 +42,7 @@ export class Homepage {
   //this.readhelparticle = page.locator('[data-automation="readArticles"]');
     this.submitaticket = page.locator('[data-automation="submitTicket"]');
     this.givefeedback= page.locator('[data-automation="giveFeedback"]');
-    this.digitalsignagemanageBtn = page.locator('[data-automation="DigitalSignage"] > [data-automation="BTNManage"]');
+    this.digitalsignagemanageBtn = page.locator('[data-automation="digitalSignage"] > [data-automation="BTNManage"]');
 
     //this.administration = page.locator('data-automation="BTNToggleSettings');
     

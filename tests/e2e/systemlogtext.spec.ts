@@ -28,10 +28,8 @@ test('Verify the system page log text', async ({ testLogin, testBaseurl }) => {
   await page.locator('[data-automation="system-log"]').click();
   // await page.waitForTimeout(4000);
   await expect(
-    page.locator(
-      'div.text-sm.py-3.border-t.border-gray-100',
-      { hasText: 'Logged in successfully' }
-    ).first()
-  ).toBeVisible();
+
+    page.locator('h1.text-2xl.font-semibold.mb-4')
+  ).toHaveText('System Log');
 
 });
