@@ -17,17 +17,17 @@ test.afterEach(async () => {
   await context.close();
 });
 
-test('Verify the room booking dashboard details ', async ({ testLogin, testBaseurl }) => {
- test.setTimeout(60000); // ← extend test limit
+test('Verify the room booking dashboard room with issues ', async ({ testLogin, testBaseurl }) => {
+  test.setTimeout(60000); // ← extend test limit
 
-    const login = new LoginPage(page);
-    const home = new Homepage(page);
-    const commonFunctions = new CommonFunctions(page,testLogin, testBaseurl);
-    await commonFunctions.login();
-    // await page.waitForTimeout(4000);
-   //await home.manageBtn.click();
-    await page.locator('[data-automation="roomBooking"] > [data-automation="BTNManage"]').click();
-    // await page.waitForTimeout(4000);
-    await expect(page.getByText('rooms with Issues', { exact: true })).toBeVisible();
-    
+  const login = new LoginPage(page);
+  const home = new Homepage(page);
+  const commonFunctions = new CommonFunctions(page, testLogin, testBaseurl);
+  await commonFunctions.login();
+  // await page.waitForTimeout(4000);
+  //await home.manageBtn.click();
+  await page.locator('[data-automation="roomBooking"] > [data-automation="BTNManage"]').click();
+  // await page.waitForTimeout(4000);
+  await expect(page.getByText('rooms with Issues', { exact: true })).toBeVisible();
+
 });

@@ -17,7 +17,7 @@ test.afterEach(async () => {
     await context.close();
 });
 
-test('Verify the Eptura room connection', async ({ testJoshLogin, testBaseurl }) => {
+test('Verify the Eptura room device add', async ({ testJoshLogin, testBaseurl }) => {
     test.setTimeout(70000);
     const commonFunctions = new CommonFunctions(page, testJoshLogin, testBaseurl);
     await commonFunctions.joshLogin(testJoshLogin);

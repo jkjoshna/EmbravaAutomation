@@ -15,7 +15,7 @@ test.beforeEach(async () => {
 test.afterEach(async () => {
     await context.close();
 });
-test('Officespace desk booking connection', async ({ testJoshLogin, testBaseurl }) => {
+test('Officespace add config ', async ({ testJoshLogin, testBaseurl }) => {
     test.setTimeout(60000); // ← extend test limit  
     const commonFunctions = new CommonFunctions(page, testJoshLogin, testBaseurl);
     await commonFunctions.joshLogin(testJoshLogin);

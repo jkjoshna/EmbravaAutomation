@@ -16,7 +16,7 @@ test.afterEach(async () => {
     await context.close();
 });
 
-test('Verify the Servicenow Connection process', async ({ testJoshLogin, testBaseurl }) => {
+test('Verify the Servicenow add device ', async ({ testJoshLogin, testBaseurl }) => {
     test.setTimeout(70000);
     const commonFunctions = new CommonFunctions(page, testJoshLogin, testBaseurl);
     await commonFunctions.joshLogin(testJoshLogin);

@@ -18,24 +18,25 @@ test.afterEach(async () => {
 });
 
 test('Validate the different tabs in room booking device page ', async ({ testLogin, testBaseurl }) => {
- test.setTimeout(60000); // ← extend test limit
+  test.setTimeout(60000); // ← extend test limit
 
-    const login = new LoginPage(page);
-    const home = new Homepage(page);
-    const commonFunctions = new CommonFunctions(page,testLogin, testBaseurl);
-    await commonFunctions.login();
-    // await page.waitForTimeout(4000);
-   //await home.manageBtn.click();
-    await page.locator('[data-automation="roomBooking"] > [data-automation="BTNManage"]').click();
-    // await page.waitForTimeout(4000);
-    await page.waitForURL('https://eccportaltest.azurewebsites.net/room-booking');
-   
-    
-    // await page.waitForTimeout(4000);
-    await page.getByText('Devices', { exact: true }).click();
-    await page.getByRole('button', { name: 'Available (0)' }).click();
-    await page.getByRole('button', { name: 'Reserved (0)' }).click();
-    await page.getByRole('button', { name: 'Checked-In (0)' }).click();
-    await page.getByRole('button', { name: 'Offline (1)' }).click();
+  const login = new LoginPage(page);
+  const home = new Homepage(page);
+  const commonFunctions = new CommonFunctions(page, testLogin, testBaseurl);
+  await commonFunctions.login();
+  // await page.waitForTimeout(4000);
+  //await home.manageBtn.click();
+  await page.locator('[data-automation="roomBooking"] > [data-automation="BTNManage"]').click();
+  // await page.waitForTimeout(4000);
+  await page.waitForURL('https://eccportaltest.azurewebsites.net/room-booking');
+
+
+  // await page.waitForTimeout(4000);
+  await page.getByText('Devices', { exact: true }).click();
+  await page.getByRole('button', { name: 'Available (0)' }).click();
+  await page.getByRole('button', { name: 'Reserved (0)' }).click();
+  await page.getByRole('button', { name: 'Checked-In (0)' }).click();
+  //await page.waitForTimeout(4000);
+  //await page.getByRole('button', { name: 'Offline (1)' }).click();
 });
-    
+

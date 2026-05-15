@@ -17,8 +17,8 @@ test.afterEach(async () => {
 });
 
 
-test('Create a new user ', async ({ page, testLogin, testBaseurl }) => {
- test.setTimeout(60000); // ← extend test limit
+test('Verify the sign up button ', async ({ page, testLogin, testBaseurl }) => {
+  test.setTimeout(60000); // ← extend test limit
 
   const login = new LoginPage(page);
   const signUp = new SignupPage(page);
