@@ -21,16 +21,20 @@ test('Verify the digital signage dashboard', async ({ testLogin, testBaseurl }) 
   const home = new Homepage(page);
   const commonFunctions = new CommonFunctions(page, testLogin, testBaseurl);
   await commonFunctions.login();
+
   await page.waitForTimeout(4000);
+  await page.evaluate(() => {
+    document.body.style.zoom = '60%';
+  });
   await page.locator('div').nth(2).click();
-  await page.getByRole('button', { name: 'Manage' }).nth(2).click();
+  //await page.getByRole('button', { name: 'Manage' }).nth(2).click();
+  await home.digitalsignagemanageBtn.click({ force: true });
+  await page.locator('[data-automation="digitalSignage"] button')
+    .click({ force: true });
 
+  //await page.locator('[data-automation="digitalSignage"] button').click();
 
-  //await home.digitalsignagemanageBtn.click({ force: true });
-
-  // await page.waitForURL('https://eccportaltest.azurewebsites.net/digital-signage');
-
-  //await page.waitForTimeout(4000);
-
+  await page.waitForTimeout(6000);
+  await expect(page.locator('h1')).toHaveText('Dashboard');
 
 });
